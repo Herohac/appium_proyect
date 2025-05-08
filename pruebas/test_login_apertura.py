@@ -74,7 +74,7 @@ class TestInicioSesion(unittest.TestCase):
         #      venta_por_salon_mover_pedidos(self.driver)
         with allure.step("venta rapida"):      
                flujo_venta_rapida_sin_pagar(self.driver)
-               cobrar_pedido(driver=self.driver, comprobante="nota", metodo_pago="izipay", tarjeta_tipo="") 
+               cobrar_pedido(driver=self.driver, comprobante="nota", metodo_pago="otros", tarjeta_tipo="") 
         
     def tearDown(self):
         self.driver.quit()

@@ -27,8 +27,9 @@ def cobrar_pedido(driver, comprobante="Boleta", metodo_pago="Efectivo", tarjeta_
                 driver.find_element(AppiumBy.XPATH, f'//android.widget.TextView[@text="{tarjeta_tipo}"]').click()
         elif metodo_pago.lower() == "otros":
             driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_metodo_pago").click()
-            driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_credito").click()
+            time.sleep(1)
             driver.find_elemento(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
+            time.sleep(2)
             try:
                 confirm = WebDriverWait(driver, 5).until(
                     EC.presence_of_element_located((AppiumBy.ID, "pe.restaurant.apprestaurant:id/confirm_button"))
@@ -37,6 +38,7 @@ def cobrar_pedido(driver, comprobante="Boleta", metodo_pago="Efectivo", tarjeta_
                 driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_eliminar_metodo_pago").click()
                 driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_metodo_pago").click()
                 driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_descuento").click()
+                time.sleep(1)
                 driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
             except:
                 pass
