@@ -14,6 +14,8 @@ from test.flujo_venta_salon import venta_por_salon
 from test.flujo_venta_salon_con_cliente import venta_por_salon_con_cliente
 from test.flujo_venta_salon_union_mesas import venta_por_salon_union_mesas
 from test.flujo_venta_salon_mover_pedidos import venta_por_salon_mover_pedidos
+from test.venta_rapida_sin_pagar import flujo_venta_rapida_sin_pagar
+from test.flujo_cobro_pedido import cobrar_pedido
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
@@ -68,8 +70,13 @@ class TestInicioSesion(unittest.TestCase):
         #with allure.step("venta por salón con  unión  de mesas"):      
          #    venta_por_salon_union_mesas(self.driver)
        
-        with allure.step("venta por salón con  unión  de mesas"):      
-              venta_por_salon_mover_pedidos(self.driver)
+        #with allure.step("venta por salón con  unión  de mesas"):      
+        #      venta_por_salon_mover_pedidos(self.driver)
+        with allure.step("venta rapida"):      
+               flujo_venta_rapida_sin_pagar(self.driver)
+               cobrar_pedido(driver=self.driver, comprobante="nota", metodo_pago="izipay", tarjeta_tipo="") 
         
     def tearDown(self):
         self.driver.quit()
+        
+        
