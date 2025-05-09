@@ -15,6 +15,7 @@ from test.flujo_venta_salon_con_cliente import venta_por_salon_con_cliente
 from test.flujo_venta_salon_union_mesas import venta_por_salon_union_mesas
 from test.flujo_venta_salon_mover_pedidos import venta_por_salon_mover_pedidos
 from test.venta_rapida_sin_pagar import flujo_venta_rapida_sin_pagar
+from test.venta_rapida_busqueda import venta_rapida_busqueda
 from test.flujo_cobro_pedido import cobrar_pedido
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -47,10 +48,27 @@ class TestInicioSesion(unittest.TestCase):
             completar_flows(self.driver)
 
         # Esperar 5 segundos para asegurar que la animación se complete
-        time.sleep(5)  # Puedes cambiar esto por un WebDriverWait si prefieres más control
+        time.sleep(2)  # Puedes cambiar esto por un WebDriverWait si prefieres más control
 
+
+          # venta  simple rápida: 
         #with allure.step("Ejecutar flujo de caja rápida"):
-        #  flujo_caja_rapida(self.driver)
+        #     flujo_caja_rapida(self.driver)
+        
+        #venta rápida con busqueda y modificadores
+        with allure.step("venta rápida con busqueda y modificadores"):
+             venta_rapida_busqueda(self.driver)
+             
+           #venta  simple por  salón: 
+       # with allure.step("Ejecutar flujo de venta por salon"):
+       #      venta_por_salon(self.driver)
+       
+           
+       
+       
+       
+       
+       
        
        # with allure.step("Ejecutar flujo de caja rápida"):
        #     flujo_venta_rapida_con_modificadores(self.driver)
@@ -72,9 +90,12 @@ class TestInicioSesion(unittest.TestCase):
        
         #with allure.step("venta por salón con  unión  de mesas"):      
         #      venta_por_salon_mover_pedidos(self.driver)
-        with allure.step("venta rapida"):      
-               flujo_venta_rapida_sin_pagar(self.driver)
-               cobrar_pedido(driver=self.driver, comprobante="nota", metodo_pago="otros", tarjeta_tipo="") 
+     
+     
+     
+        with allure.step("cobro"):          
+           #  flujo_venta_rapida_sin_pagar(self.driver)
+            cobrar_pedido(driver=self.driver, comprobante="nota", metodo_pago="plin", tarjeta_tipo="") 
         
     def tearDown(self):
         self.driver.quit()

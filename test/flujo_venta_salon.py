@@ -102,16 +102,3 @@ def venta_por_salon(driver):
     with allure.step("Cobrar pedido"):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
 
-    with allure.step("Seleccionar pago en efectivo"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_efectivo").click()
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_exacto").click()
-
-    with allure.step("Esperar y cancelar si no imprime"):
-        time.sleep(5)
-        try:
-            driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/cancel_button").click()
-        except:
-            pass
-
-    with allure.step("Nueva venta"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_nueva_venta").click()

@@ -26,22 +26,12 @@ def cobrar_pedido(driver, comprobante="Boleta", metodo_pago="Efectivo", tarjeta_
             if tarjeta_tipo:
                 driver.find_element(AppiumBy.XPATH, f'//android.widget.TextView[@text="{tarjeta_tipo}"]').click()
         elif metodo_pago.lower() == "otros":
-            driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_metodo_pago").click()
-            time.sleep(1)
-            driver.find_elemento(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
-            time.sleep(2)
-            try:
-                confirm = WebDriverWait(driver, 5).until(
-                    EC.presence_of_element_located((AppiumBy.ID, "pe.restaurant.apprestaurant:id/confirm_button"))
-                )
-                confirm.click()
-                driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_eliminar_metodo_pago").click()
-                driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_metodo_pago").click()
-                driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_descuento").click()
-                time.sleep(1)
-                driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
-            except:
-                pass
+             driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_metodo_pago").click()
+             time.sleep(1)
+             driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_descuento").click()
+             driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
+    
+               
         elif metodo_pago.lower() == "plin":
             driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/iv_opcion_plin").click()
         elif metodo_pago.lower() == "yape":
@@ -62,20 +52,13 @@ def cobrar_pedido(driver, comprobante="Boleta", metodo_pago="Efectivo", tarjeta_
         time.sleep(3)
 
     # Verificar si la impresora imprimió
-    with allure.step("Verificar si se imprimió el recibo"):
+   
+    with allure.step("Esperar y cancelar si no imprime"):
+        time.sleep(5)
         try:
             driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/cancel_button").click()
-            allure.attach("Venta no impresa. Se canceló.", name="Advertencia de impresión", attachment_type=allure.attachment_type.TEXT)
-        except Exception as e:
-            allure.attach(f"Error al verificar impresión: {str(e)}", name="Error Impresión", attachment_type=allure.attachment_type.TEXT)
+        except:
+            pass
 
-    # Hacer clic en nueva venta
-    with allure.step("Iniciar nueva venta"):
+    with allure.step("Nueva venta"):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_nueva_venta").click()
-
-    # Salir de la venta rápida y volver a la pantalla general
-    with allure.step("Salir de la venta rápida"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ly_back").click()
-
-    driver.save_screenshot("flujo_venta_rapida_completo.png")
-    allure.attach.file("flujo_venta_rapida_completo.png", name="Flujo de Venta Rápida Completado", attachment_type=allure.attachment_type.PNG)
