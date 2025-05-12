@@ -61,8 +61,8 @@ class TestInicioSesion(unittest.TestCase):
     #      venta_rapida_busqueda(self.driver)
              
            #venta  simple por  salón: 
-       # with allure.step("Ejecutar flujo de venta por salon"):
-       #      venta_por_salon(self.driver)
+        with allure.step("Ejecutar flujo de venta por salon"):
+            venta_por_salon(self.driver)
        
            
        
@@ -91,8 +91,8 @@ class TestInicioSesion(unittest.TestCase):
        
         #with allure.step("venta por salón con  unión  de mesas"):      
         #      venta_por_salon_mover_pedidos(self.driver)
-        with allure.step("ejecutar  venta  con  busqueda"): 
-             venta_por_salon_busqueda(self.driver)
+        #with allure.step("ejecutar  venta  con  busqueda"): 
+         #    venta_por_salon_busqueda(self.driver)
      
      
      

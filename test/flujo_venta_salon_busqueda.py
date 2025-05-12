@@ -70,7 +70,24 @@ def venta_por_salon_busqueda(driver):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()  
         time.sleep(5) 
         
-        #COBRAR PEDIDO
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
-        
+    
+
+    with allure.step("Seleccionar la primera mesa disponible"):
+        WebDriverWait(driver, 15).until(
+            EC.element_to_be_clickable((AppiumBy.XPATH, '(//android.widget.LinearLayout[@resource-id="pe.restaurant.apprestaurant:id/relative_mesa"])[1]'))
+        ).click()
+
+    with allure.step("Ingresar PIN 4321"):
+          driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("1")').click()
+          driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("2")').click()
+          driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("3")').click()
+          driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("4")').click()
+              # Confirmar PIN
+          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/button_confirm").click()
+          allure.attach("PIN ingresado y confirmado", name="Ingreso PIN", attachment_type=allure.attachment_type.TEXT)
+
+          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_ver_pedidos").click() 
         ##llamamos a la función  cobrar  pedido.  
+        
+            #COBRAR PEDIDO
+          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
