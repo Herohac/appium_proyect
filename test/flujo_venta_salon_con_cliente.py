@@ -89,13 +89,8 @@ def venta_por_salon_con_cliente(driver):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_ver_pedidos").click()  
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()  
         time.sleep(5) 
+        
+        #COBRAR PEDIDO
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_efectivo").click()
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_exacto").click()
-        time.sleep(5)
-        try:
-            driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/cancel_button").click()
-        except:
-            pass
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_nueva_venta").click()
-    
+        
+        ##llamamos a la función  cobrar  pedido.  

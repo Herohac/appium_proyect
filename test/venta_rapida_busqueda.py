@@ -76,4 +76,7 @@ def venta_rapida_busqueda(driver):
     # Enviar pedido
     with allure.step("Enviar pedido"):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()
+     
+     
+     #cobrar pedido
 

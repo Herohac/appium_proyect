@@ -109,12 +109,8 @@ def venta_por_salon_union_mesas(driver):
           driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_ver_pedidos").click()
           driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()
           time.sleep(5)
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_tarjeta").click()
           
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
-          time.sleep(5)
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/cancel_button").click()
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_nueva_venta").click()
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/navigation_principal").click()
-          time.sleep(3)
+          #COBRAR  PEDIDO
+          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
+         
+          ## IR A  FLUJO  COBRAR  PEDIDO

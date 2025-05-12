@@ -98,7 +98,8 @@ def venta_por_salon(driver):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()
     
     time.sleep(5)
-
+           
+        #COBRAR PEDIDO
     with allure.step("Cobrar pedido"):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
 

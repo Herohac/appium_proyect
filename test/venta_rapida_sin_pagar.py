@@ -45,4 +45,5 @@ def flujo_venta_rapida_sin_pagar(driver):
     # Enviar pedido
     with allure.step("Enviar pedido"):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()
-
+     
+      #ir al pedido  sin  cobrar 

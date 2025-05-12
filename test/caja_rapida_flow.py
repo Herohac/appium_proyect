@@ -39,4 +39,4 @@ def flujo_caja_rapida(driver):
     # Agrupar pedidos
          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()
 
-    
+    #ir a  cobrar el pedido

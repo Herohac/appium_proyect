@@ -76,17 +76,6 @@ def venta_por_salon_mover_pedidos(driver):
           #cobrar el pedido
           driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_continuar").click()
           
-          #seleccionar tarjeta 
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_tarjeta").click()
+          # SE  PEGA AL FLUJO DE COBRAR PEDIDO.  
           
-          #generar  el pago
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
-         #esperar  el error de  la  immpresión
-          time.sleep(5)
-          #cqncelar  la  impresión
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/cancel_button").click()
-          #generar  una nueva  venta
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_nueva_venta").click()
-          #ir a  la navegación  principal 
-          driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/navigation_principal").click()
-          time.sleep(3)
+         

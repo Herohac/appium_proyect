@@ -52,33 +52,4 @@ def flujo_venta_rapida_desde_favoritos(driver):
     with allure.step("Enviar pedido"):
         driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agrupar").click()
 
-    # Seleccionar método de pago "Efectivo"
-    with allure.step("Seleccionar método de pago: Efectivo"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_agregar_efectivo").click()
-
-    # Seleccionar "Agregar Pago"
-    with allure.step("Seleccionar 'Agregar Pago'"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ll_agregarpago").click()
-
-    # Esperar 3 segundos para la verificación de impresión
-    with allure.step("Esperar 3 segundos para verificar si se imprimió o no"):
-        time.sleep(3)
-
-    # Verificar si la impresora imprimió
-    with allure.step("Verificar si se imprimió el recibo"):
-        try:
-            driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/cancel_button").click()
-            allure.attach("Venta no impresa. Se canceló.", name="Advertencia de impresión", attachment_type=allure.attachment_type.TEXT)
-        except Exception as e:
-            allure.attach(f"Error al verificar impresión: {str(e)}", name="Error Impresión", attachment_type=allure.attachment_type.TEXT)
-
-    # Hacer clic en nueva venta
-    with allure.step("Iniciar nueva venta"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_nueva_venta").click()
-
-    # Salir de la venta rápida y volver a la pantalla general
-    with allure.step("Salir de la venta rápida"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ly_back").click()
-
-    driver.save_screenshot("flujo_venta_rapida_favoritos_completo.png")
-    allure.attach.file("flujo_venta_rapida_favoritos_completo.png", name="Flujo de Venta Rápida Favoritos Completado", attachment_type=allure.attachment_type.PNG)
+   ##ir  a cobrar el pedido
