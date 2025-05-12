@@ -60,7 +60,10 @@ def venta_por_salon_con_cliente(driver):
         email.clear()
         email.set_value("rpieroalexandro@gmail.com")  
         
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_guardar_cliente").click()      
+        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/btn_guardar_cliente").click()   
+        
+    with allure.step("click en  busqueda"): 
+        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/tv_busqueda").click()   
          
         campo_busqueda = WebDriverWait(driver, 10).until(
          EC.presence_of_element_located((AppiumBy.ID, "pe.restaurant.apprestaurant:id/search_src_text"))

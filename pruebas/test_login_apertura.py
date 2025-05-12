@@ -16,6 +16,7 @@ from test.flujo_venta_salon_union_mesas import venta_por_salon_union_mesas
 from test.flujo_venta_salon_mover_pedidos import venta_por_salon_mover_pedidos
 from test.venta_rapida_sin_pagar import flujo_venta_rapida_sin_pagar
 from test.venta_rapida_busqueda import venta_rapida_busqueda
+from test.flujo_venta_salon_busqueda import venta_por_salon_busqueda
 from test.flujo_cobro_pedido import cobrar_pedido
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -56,8 +57,8 @@ class TestInicioSesion(unittest.TestCase):
         #     flujo_caja_rapida(self.driver)
         
         #venta rápida con busqueda y modificadores
-        with allure.step("venta rápida con busqueda y modificadores"):
-             venta_rapida_busqueda(self.driver)
+     #   with allure.step("venta rápida con busqueda y modificadores"):
+    #      venta_rapida_busqueda(self.driver)
              
            #venta  simple por  salón: 
        # with allure.step("Ejecutar flujo de venta por salon"):
@@ -82,14 +83,16 @@ class TestInicioSesion(unittest.TestCase):
       #  with allure.step("Ejecutar flujo de venta por salon"):
       #       venta_por_salon(self.driver)
         
-       # with allure.step("ejecutar  cliente en venta por salon"): 
-        #     venta_por_salon_con_cliente(self.driver)
+       #  with allure.step("ejecutar  cliente en venta por salon"): 
+        #    venta_por_salon_con_cliente(self.driver)
         
         #with allure.step("venta por salón con  unión  de mesas"):      
          #    venta_por_salon_union_mesas(self.driver)
        
         #with allure.step("venta por salón con  unión  de mesas"):      
         #      venta_por_salon_mover_pedidos(self.driver)
+        with allure.step("ejecutar  venta  con  busqueda"): 
+             venta_por_salon_busqueda(self.driver)
      
      
      
