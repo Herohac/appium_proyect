@@ -22,32 +22,39 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def main():
+@allure.epic("pago de pedido")
+def main(comprobante="Boleta", metodo_pago="Efectivo", tarjeta_tipo=None):
     driver = start_appium_driver()
-
-    usuario = "admin2@rest.pe"
-    contrasena = "123456"
-
     try:
-        with allure.step("Login"):
-            login(driver, usuario, contrasena)
+        with allure.step("Ejecutar flujo de venta rápida sin pagar (preparación cobro)"):
+            from test.venta_rapida.venta_rapida_sin_pagar import flujo_venta_rapida_sin_pagar
+            flujo_venta_rapida_sin_pagar(driver)
 
-        with allure.step("Seleccionar local"):
-            seleccionar_local(driver)
-
-        with allure.step("Seleccionar Caja 03"):
-            seleccionar_caja(driver)
-
-        with allure.step("Seleccionar turno"):
-            seleccionar_turno(driver)
-
-        with allure.step("Presentar flujo de apertura de caja"):
-            completar_flows(driver)
-
-        time.sleep(2)  # O reemplaza por WebDriverWait si prefieres
+        with allure.step(f"Realizar cobro con comprobante: {comprobante}, método de pago: {metodo_pago}"):
+            cobrar_pedido(driver=driver, comprobante=comprobante, metodo_pago=metodo_pago, tarjeta_tipo=tarjeta_tipo)
 
     finally:
         driver.quit()
 
+class TestPago(unittest.TestCase):
+    def setUp(self):
+        self.driver = start_appium_driver()
+
+    def test_cobro(self):
+        # Aquí puedes poner parámetros fijos o parametrizar
+        flujo_venta_rapida_sin_pagar = __import__('test.venta_rapida.venta_rapida_sin_pagar', fromlist=['flujo_venta_rapida_sin_pagar']).flujo_venta_rapida_sin_pagar
+
+        with allure.step("Ejecutar flujo de venta rápida sin pagar (preparación cobro)"):
+            flujo_venta_rapida_sin_pagar(self.driver)
+
+        with allure.step("Realizar cobro con comprobante nota y método plin"):
+            cobrar_pedido(driver=self.driver, comprobante="nota", metodo_pago="plin", tarjeta_tipo="")
+
+    def tearDown(self):
+        self.driver.quit()
+
 if __name__ == "__main__":
-    main()
+    # Ejecuta el main con parámetros de ejemplo
+    main(comprobante="Factura", metodo_pago="Tarjeta", tarjeta_tipo="Crédito")
+        
+        

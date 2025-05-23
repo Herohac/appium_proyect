@@ -51,13 +51,6 @@ def cobrar_pedido(driver, comprobante="Boleta", metodo_pago="Efectivo", tarjeta_
     with allure.step("Esperar 3 segundos para verificar si se imprimió o no"):
         time.sleep(3)
 
-    # Verificar si la impresora imprimió
-    with allure.step("Verificar si se imprimió el recibo"):
-        try:
-            driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/cancel_button").click()
-            allure.attach("Venta no impresa. Se canceló.", name="Advertencia de impresión", attachment_type=allure.attachment_type.TEXT)
-        except Exception as e:
-            allure.attach(f"Error al verificar impresión: {str(e)}", name="Error Impresión", attachment_type=allure.attachment_type.TEXT)
 
     # Hacer clic en nueva venta
     with allure.step("Iniciar nueva venta"):
@@ -65,7 +58,7 @@ def cobrar_pedido(driver, comprobante="Boleta", metodo_pago="Efectivo", tarjeta_
 
     # Salir de la venta rápida y volver a la pantalla general
     with allure.step("Salir de la venta"):
-        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/ly_back").click()
+        driver.find_element(AppiumBy.ID, "pe.restaurant.apprestaurant:id/navigation_principal").click()
 
     driver.save_screenshot("flujo_venta_rapida_completo.png")
     allure.attach.file("flujo_venta_rapida_completo.png", name="Flujo de Venta Rápida Completado", attachment_type=allure.attachment_type.PNG)
