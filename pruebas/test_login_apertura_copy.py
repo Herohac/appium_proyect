@@ -95,7 +95,6 @@ class TestInicioSesion(unittest.TestCase):
      
      
         with allure.step("cobro"):          
-             flujo_venta_rapida_sin_pagar(self.driver)
              cobrar_pedido(driver=self.driver, comprobante="Boleta", metodo_pago="plin", tarjeta_tipo="") 
         
     def tearDown(self):

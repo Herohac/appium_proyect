@@ -1,4 +1,4 @@
-from pruebas.pago import main as pago_main
+# from pruebas.pago import main as pago_main
 from pruebas.test_login_apertura import main as login_main
 from pruebas.test_venta_rapida import main as venta_rapida_main
 from test.appium_driver import start_appium_driver
